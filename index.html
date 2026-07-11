@@ -1,1 +1,41 @@
-
+<html>
+  <head>
+    <title>Web App</title>
+  </head>
+  <body>
+    <h1> Check weather</h1>
+    <input placeholder="Enter your City" id="City">
+    <br>
+    <br>
+    <button onclick="getWeather()">CHECK</button>
+    <br>
+    <div id="result"></div>
+    <script>
+      async function getWeather(){
+      const city = document.getElementById("City").value;
+        const apiKey = "7de39378860c664212a6420a38220ec8";
+        const url = "https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric"
+        try{
+          const response = await fetch(url);
+          const data= await response.json();
+          if (data.cod === 200) {
+      const weatherInfo = `
+        <h2>${data.name}</h2>
+        <p>Temperature: ${data.main.temp}°C</p>
+        <p>Condition: ${data.weather[0].description}</p>
+      `;
+      document.getElementById("weatherResult").innerHTML = weatherInfo;
+    } else {
+      document.getElementById(
+        "weatherResult"
+      ).innerHTML = `<p>City not found!</p>`;
+    }
+  } catch (error) {
+    document.getElementById(
+      "weatherResult"
+    ).innerHTML = `<p>Error fetching weather data.</p>`;
+        }
+      }
+    </script>
+  </body>
+</html>
