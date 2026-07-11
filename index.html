@@ -24,15 +24,15 @@
         <p>Temperature: ${data.main.temp}°C</p>
         <p>Condition: ${data.weather[0].description}</p>
       `;
-      document.getElementById("weatherResult").innerHTML = weatherInfo;
+      document.getElementById("result").innerHTML = weatherInfo;
     } else {
       document.getElementById(
-        "weatherResult"
+        "result"
       ).innerHTML = `<p>City not found!</p>`;
     }
   } catch (error) {
     document.getElementById(
-      "weatherResult"
+      "result"
     ).innerHTML = `<p>Error fetching weather data.</p>`;
         }
       }
